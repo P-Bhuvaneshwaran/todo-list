@@ -1,0 +1,80 @@
+<head>
+    <title>Todo Project</title>
+    <style>
+
+    body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            padding: 20px;
+        }
+        .btndel{
+            background-color: red;
+            outline: none;
+            border: none;
+            color: white;
+            padding: 3px 8px;
+            margin-left: 10px;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        li{
+            list-style-type: none;
+            padding: 10px 5px;
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+        }
+        input[type="text"]
+        {
+            padding: 5px 8px;
+        }
+        .btnadd{
+            background-color: yellowgreen;
+            border: none;
+            outline: none;
+            color: white;
+            font-weight: bold;
+            padding: 6px 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>ToDo Project:</h3>
+        <input type="text" placeholder="Enter your task">
+        <button class="btnadd">Add</button>
+        <ul>
+            <li>Laptop <button class="btndel" onclick="deleteFunc(event)">Delete</button></li>
+            <li>Mobile Phones <button class="btndel" onclick="deleteFunc(event)">Delete</button></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    let inputBox = document.querySelector("input");
+    let ulTag = document.querySelector("ul");
+    
+    let delBtn = document.querySelector(".btndel");
+    let addBtn = document.querySelector(".btnadd");
+    addBtn.addEventListener("click",()=>{
+        if(inputBox.value !="")
+        {
+            let liTag = document.createElement("li");
+            liTag.innerHTML = inputBox.value + `<button class="btndel" onclick="deleteFunc(event)">Delete</button>`;
+            ulTag.append(liTag)
+            inputBox.style.border = "1px solid black";
+            inputBox.value="";
+        }
+        else{
+            inputBox.style.border = "2px solid red";
+        }
+    })
+
+    const deleteFunc=(event)=>{
+        console.log(event.target.parentElement.remove());
+    }
+</script>
